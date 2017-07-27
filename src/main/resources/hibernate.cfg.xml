@@ -30,8 +30,8 @@
             caoniezi
         </property>
 
-        <!--<mapping class="com.chaycao.hibernatebbs.bean.Article"/>-->
-        <!--<mapping class="com.chaycao.hibernatebbs.bean.Comment"/>-->
+        <mapping class="com.chaycao.hibernatebbs.bean.Article"/>
+        <mapping class="com.chaycao.hibernatebbs.bean.Comment"/>
         <mapping class="com.chaycao.hibernatebbs.bean.User"/>
 
     </session-factory>

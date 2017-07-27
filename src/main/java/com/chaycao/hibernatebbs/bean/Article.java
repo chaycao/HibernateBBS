@@ -1,5 +1,7 @@
 package com.chaycao.hibernatebbs.bean;
 
+import com.chaycao.hibernatebbs.control.impl.ArticleImpl;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -23,11 +25,14 @@ public class Article {
     @Column(name = "time")
     private Date time;
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY,optional=true)
+    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,optional=true)
     @JoinColumn(name = "user_id")
     private User user;
 
     //-------------------Constructor-----------------------------//
+    public Article() {
+    }
+
     public Article(String title, String context, Date time, User user) {
         this.title = title;
         this.context = context;
@@ -75,4 +80,5 @@ public class Article {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

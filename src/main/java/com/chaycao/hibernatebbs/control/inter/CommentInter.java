@@ -1,6 +1,7 @@
 package com.chaycao.hibernatebbs.control.inter;
 
 
+import com.chaycao.hibernatebbs.bean.Article;
 import com.chaycao.hibernatebbs.bean.Comment;
 
 import java.util.List;
@@ -12,17 +13,15 @@ public interface CommentInter {
 
     /**
      * 添加评论
-     * @param context
-     * @param userId
-     * @param articleId
+     * @param
      * @return
      */
-    public boolean add(String context, int userId, int articleId);
+    public boolean add(Comment comment);
 
     /**
-     * 根据文章iD查询所有的评论
-     * @param articleId
+     * 根据文章查询所有的评论
+     * @param article
      * @return
      */
-    public List<Comment> selectByArticleId(int articleId);
+    public List<Comment> selectByArticle(Article article);
 }

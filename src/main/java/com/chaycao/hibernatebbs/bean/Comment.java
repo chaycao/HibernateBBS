@@ -1,14 +1,13 @@
 package com.chaycao.hibernatebbs.bean;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by chaycao on 2017/7/26.
  */
+@Entity
+@Table(name = "comment")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,13 +20,18 @@ public class Comment {
     @Column(name = "time")
     private Date time;
 
-    @Column(name = "user_id")
+    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,optional=true)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "article_id")
+    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,optional=true)
+    @JoinColumn(name = "article_id")
     private Article article;
 
     //-------------------Constructor-----------------------------//
+    public Comment() {
+    }
+
     public Comment(String context, Date time, User user, Article article) {
         this.context = context;
         this.time = time;
