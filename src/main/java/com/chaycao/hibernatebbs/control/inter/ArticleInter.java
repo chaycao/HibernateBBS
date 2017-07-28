@@ -16,19 +16,19 @@ public interface ArticleInter {
      * 查询所有文章
      * @return
      */
-    public List<Article> selectAll();
+    public List<Article> listAll();
 
     /**
      * 添加文章
      * @param article
      * @return
      */
-    public boolean add(Article article);
+    public boolean save(Article article);
 
     /**
      * 根据文章列表中的索引查找文章
      * @param index
      * @return
      */
-    public Article selectByIndex(int index);
+    public Article getByIndex(int index);
 }

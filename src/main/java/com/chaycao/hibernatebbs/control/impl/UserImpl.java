@@ -31,7 +31,7 @@ public class UserImpl implements UserInter {
      * @return
      */
     public boolean register(final User user) {
-        return UserDao.add(user);
+        return UserDao.save(user);
     }
 
     /**
@@ -41,7 +41,7 @@ public class UserImpl implements UserInter {
      * @return
      */
     public User login(final String userName, final String userPassword) {
-        return UserDao.selectByNamePassword(userName, userPassword);
+        return UserDao.getByNamePassword(userName, userPassword);
     }
 
     public static void main(String[] args) {

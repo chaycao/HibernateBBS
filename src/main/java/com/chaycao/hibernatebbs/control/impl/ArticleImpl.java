@@ -37,8 +37,8 @@ public class ArticleImpl implements ArticleInter {
      * 查询所有文章
      * @return
      */
-    public List<Article> selectAll() {
-        List<Article> articles = ArticleDao.selectAll();
+    public List<Article> listAll() {
+        List<Article> articles = ArticleDao.listAll();
         this.articleList = articles;
         return articles;
     }
@@ -48,8 +48,8 @@ public class ArticleImpl implements ArticleInter {
      * @param article
      * @return
      */
-    public boolean add(Article article) {
-        return ArticleDao.add(article);
+    public boolean save(Article article) {
+        return ArticleDao.save(article);
     }
 
     /**
@@ -57,11 +57,11 @@ public class ArticleImpl implements ArticleInter {
      * @param index
      * @return
      */
-    public Article selectByIndex(int index) {
+    public Article getByIndex(int index) {
         return articleList.get(index);
     }
 
     public static void main(String[] args) {
-        System.out.println(ArticleImpl.INSTANCE.selectAll().size());
+        System.out.println(ArticleImpl.INSTANCE.listAll().size());
     }
 }

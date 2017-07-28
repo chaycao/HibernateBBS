@@ -28,8 +28,8 @@ public class CommentImpl implements CommentInter {
      * @param comment
      * @return
      */
-    public boolean add(Comment comment) {
-        return CommentDao.add(comment);
+    public boolean save(Comment comment) {
+        return CommentDao.save(comment);
     }
 
     /**
@@ -37,7 +37,7 @@ public class CommentImpl implements CommentInter {
      * @param article
      * @return
      */
-    public List<Comment> selectByArticle(Article article) {
-        return CommentDao.selectByArticle(article);
+    public List<Comment> listByArticle(Article article) {
+        return CommentDao.listByArticle(article);
     }
 }

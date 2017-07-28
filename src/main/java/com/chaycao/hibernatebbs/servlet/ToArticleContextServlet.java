@@ -31,12 +31,12 @@ public class ToArticleContextServlet extends HttpServlet{
         String[] reslut = query.split("=");
         int index = Integer.parseInt(reslut[1]);
         request.setAttribute("index", index);
-        Article article = ArticleImpl.INSTANCE.selectByIndex(index);
+        Article article = ArticleImpl.INSTANCE.getByIndex(index);
         request.setAttribute("title", article.getTitle());
         request.setAttribute("userName", article.getUser().getUserName());
         request.setAttribute("time", article.getTime());
         request.setAttribute("context", article.getContext());
-        List<Comment> commentList = CommentImpl.INSTANCE.selectByArticle(article);
+        List<Comment> commentList = CommentImpl.INSTANCE.listByArticle(article);
         request.setAttribute("commentList", commentList);
         // 转发
         request.getRequestDispatcher("/articleContext.jsp").forward(request, response);

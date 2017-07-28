@@ -25,7 +25,7 @@ public class ToArticleListServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("utf-8");
-        List<Article> articleList = ArticleImpl.INSTANCE.selectAll();
+        List<Article> articleList = ArticleImpl.INSTANCE.listAll();
         request.setAttribute("articleList", articleList);
         request.getRequestDispatcher("/articleList.jsp").forward(request, response);
     }

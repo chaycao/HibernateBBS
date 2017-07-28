@@ -15,37 +15,35 @@ import java.util.List;
  */
 public class ArticleDao {
 
-    public static boolean add(final Article article) {
-        Session session = HibernateUtil.currentSession();
-        Transaction tx = session.beginTransaction();
-        Integer id = null;
-        try{
-            id = (Integer) session.save(article);
-            tx.commit();
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            HibernateUtil.closeSession();
-        }
-        if (id.equals(null))
-            return false;
-        else
-            return true;
-    }
-
-    public static boolean delete(final Article article) {
+    public static boolean save(final Article article) {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         boolean success = true;
-        try{
-            session.delete(article);
+        try {
+            session.save(article);
             tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
             success = false;
-        }finally {
+        } finally {
+            HibernateUtil.closeSession();
+        }
+        return success;
+    }
+
+    public static boolean remove(final Article article) {
+        Session session = HibernateUtil.currentSession();
+        Transaction tx = session.beginTransaction();
+        boolean success = true;
+        try {
+            session.delete(article);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+            success = false;
+        } finally {
             HibernateUtil.closeSession();
         }
         return success;
@@ -55,31 +53,31 @@ public class ArticleDao {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         boolean success = true;
-        try{
+        try {
             session.update(article);
             tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
             success = false;
-        }finally {
+        } finally {
             HibernateUtil.closeSession();
         }
         return success;
     }
 
-    public static List<Article> selectAll() {
+    public static List<Article> listAll() {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         List<Article> articles = new ArrayList<Article>();
-        try{
+        try {
             Query query = session.createQuery("FROM com.chaycao.hibernatebbs.bean.Article");
             articles = query.list();
             tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             HibernateUtil.closeSession();
         }
         return articles;

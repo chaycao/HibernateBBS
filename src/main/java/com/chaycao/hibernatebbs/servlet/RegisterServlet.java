@@ -25,7 +25,7 @@ public class RegisterServlet extends HttpServlet{
         String userName = request.getParameter("username");
         String userPassword = request.getParameter("userpassword");
         User user = new User(userName, userPassword);
-        if(UserImpl.INSTANCE.register(user) == true){ //注册成功
+        if (UserImpl.INSTANCE.register(user) == true){ //注册成功
             System.out.println("注册成功");
             request.getRequestDispatcher("/toLogin").forward(request, response);
         } else {

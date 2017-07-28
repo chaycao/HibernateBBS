@@ -12,7 +12,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "context")
     private String context;
@@ -20,11 +20,11 @@ public class Comment {
     @Column(name = "time")
     private Date time;
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,optional=true)
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER,optional=true)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,optional=true)
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER,optional=true)
     @JoinColumn(name = "article_id")
     private Article article;
 
@@ -40,11 +40,11 @@ public class Comment {
     }
 
     //-------------------Get & Set-----------------------------//
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

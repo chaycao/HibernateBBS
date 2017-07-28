@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet{
         String userName = request.getParameter("username");
         String userPassword = request.getParameter("userpassword");
         User user = UserImpl.INSTANCE.login(userName, userPassword);
-        if(user != null){ //登录成功
+        if (user != null){ //登录成功
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("userName", userName);

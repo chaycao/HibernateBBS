@@ -22,7 +22,7 @@ import java.util.Date;
  */
 @WebServlet(name="addComment"
         , urlPatterns = "/addComment")
-public class AddCommentServlet extends HttpServlet{
+public class AddCommentServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
     }
@@ -35,7 +35,7 @@ public class AddCommentServlet extends HttpServlet{
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
         Comment comment = new Comment(context, new Date(System.currentTimeMillis()), user, article);
-        if(CommentImpl.INSTANCE.add(comment)) {
+        if (CommentImpl.INSTANCE.save(comment)) {
             response.sendRedirect("toArticleContext?index=" + index);
         } else {
             response.sendRedirect("toArticleContext?index=" + index);

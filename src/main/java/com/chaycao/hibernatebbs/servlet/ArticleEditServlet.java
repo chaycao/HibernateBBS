@@ -16,7 +16,7 @@ import java.io.IOException;
  */
 @WebServlet(name="articleEdit"
         , urlPatterns = "/articleEdit")
-public class ArticleEditServlet extends HttpServlet{
+public class ArticleEditServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         doPost(request, response);
     }

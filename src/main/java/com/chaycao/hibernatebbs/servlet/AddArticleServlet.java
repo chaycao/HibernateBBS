@@ -19,7 +19,7 @@ import java.util.Date;
  */
 @WebServlet(name="addArticle"
         , urlPatterns = "/addArticle")
-public class AddArticleServlet extends HttpServlet{
+public class AddArticleServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         doPost(request, response);
     }
@@ -31,7 +31,7 @@ public class AddArticleServlet extends HttpServlet{
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
         Article article = new Article(title, comment, new Date(System.currentTimeMillis()), user);
-        if(ArticleImpl.INSTANCE.add(article)){
+        if (ArticleImpl.INSTANCE.save(article)) {
             System.out.println("发表成功");
             response.sendRedirect("articleAddSuccess.jsp");
         } else {

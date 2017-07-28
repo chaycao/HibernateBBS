@@ -16,12 +16,12 @@ public interface CommentInter {
      * @param
      * @return
      */
-    public boolean add(Comment comment);
+    public boolean save(Comment comment);
 
     /**
      * 根据文章查询所有的评论
      * @param article
      * @return
      */
-    public List<Comment> selectByArticle(Article article);
+    public List<Comment> listByArticle(Article article);
 }

@@ -14,7 +14,7 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "title")
     private String title;
@@ -25,7 +25,7 @@ public class Article {
     @Column(name = "time")
     private Date time;
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER,optional=true)
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER,optional=true)
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -41,11 +41,11 @@ public class Article {
     }
 
     //-------------------Get & Set-----------------------------//
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

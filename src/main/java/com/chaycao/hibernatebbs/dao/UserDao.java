@@ -17,17 +17,17 @@ import java.util.List;
  */
 public class UserDao {
 
-    public static boolean add(final User user) {
+    public static boolean save(final User user) {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         Integer id = null;
-        try{
+        try {
             id = (Integer) session.save(user);
             tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             HibernateUtil.closeSession();
         }
         if (id.equals(null))
@@ -36,18 +36,18 @@ public class UserDao {
             return true;
     }
 
-    public static boolean delete(final User user) {
+    public static boolean remove(final User user) {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         boolean success = true;
-        try{
+        try {
             session.delete(user);
             tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
             success = false;
-        }finally {
+        } finally {
             HibernateUtil.closeSession();
         }
         return success;
@@ -57,31 +57,31 @@ public class UserDao {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         boolean success = true;
-        try{
+        try {
             session.update(user);
             tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
             success = false;
-        }finally {
+        } finally {
             HibernateUtil.closeSession();
         }
         return success;
     }
 
-    public static List<User> selectAll() {
+    public static List<User> listAll() {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         List<User> users = new ArrayList<User>();
-        try{
+        try {
             Query query = session.createQuery("FROM com.chaycao.hibernatebbs.bean.User");
             users = query.list();
             tx.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             HibernateUtil.closeSession();
         }
         return users;
@@ -93,7 +93,7 @@ public class UserDao {
      * @param password
      * @return
      */
-    public static User selectByNamePassword (String name, String password) {
+    public static User getByNamePassword (String name, String password) {
         Session session = HibernateUtil.currentSession();
         Transaction tx = session.beginTransaction();
         boolean success = true;
